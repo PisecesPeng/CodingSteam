@@ -25,11 +25,12 @@ public class Main {
             if (intenumPreValue < intenumValue) {  // 是否存在前一位数值比当前数值小的情况
                 result += intenumValue - intenumPreValue;  // 若存在前一位数值比当前数值小, 需要取得该两位数值的差
                 i++;  // 由于此次计算已使用两个数字, 跳一位, 保证不重复使用数字
+                // 当此次循环为最后一次循环时, 将最后一位数值也累加上
+                if (i == strArray.length - 1) result += IntEnum.valueOf(strArray[i]).getNum();
             } else {
                 result += intenumPreValue;  // 正常累加result数值
-                if (i == strArray.length - 1) {  // 当此次循环为最后一次循环时, 将最后一位数值也累加上
-                    result += intenumValue;
-                }
+                // 当此次循环为最后一次循环时, 将最后一位数值也累加上
+                if (i == strArray.length - 1) result += intenumValue;
             }
         }
         return result;
