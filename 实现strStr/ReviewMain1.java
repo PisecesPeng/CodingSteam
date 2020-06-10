@@ -9,14 +9,13 @@ public class ReviewMain1 {
     }
 
     private static int func(String haystack, String needle) {
-        if (needle == null || "".equals(needle.trim())) return 0;  // 判断'匹配字符串'为空的情况
-        char c = needle.charAt(0);
-        for (int i = 0, hayLen = haystack.length(), neeLen = needle.length(); i < hayLen; i++) {
-            // 遍历, 取得符合条件的下标
-            if (Objects.equals(haystack.charAt(i), c) &&
-                    haystack.substring(i, i + neeLen).equals(needle)) {
+        if ((needle == null || "".equals(needle.trim()))  // 判断'匹配字符串'是否为空
+                || haystack.equals(needle)  // 判断两字符串是否相等
+        ) return 0;
+        for (int i = 0; i < haystack.length() - needle.length() + 1; i++) {
+            if (haystack.charAt(i) == needle.charAt(0)
+                    && haystack.substring(i, i + needle.length()).equals(needle))
                 return i;
-            }
         }
         return -1;
     }
